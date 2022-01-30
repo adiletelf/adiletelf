@@ -2,7 +2,8 @@ name: Metrics
 
 # Controls when the workflow will run
 on:
-  schedule: [{cron: "0 0 * * *"}]
+  # 06:00, Monday
+  schedule: [{cron: "0 6 * * 1"}]
   workflow_dispatch:
   push:
     branches: [ main ]
@@ -22,13 +23,14 @@ jobs:
           
           # Display
           template: classic
-          base: header, activity, community, repositories
+          base: header, activity, repositories
           
           # Plugins
-          # plugin_introduction: yes
+          plugin_introduction: yes
           plugin_languages: yes
           plugin_activity: yes
-          
+          plugin_traffic: yes
+          plugin_isocalendar: yes
           
           plugin_wakatime: yes
           plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
